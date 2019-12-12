@@ -3,7 +3,7 @@ include ../Makefile
 all: clean main
 
 clean:
-	rm -f ex_dl *.o *.so *.dylib *.asm
+	rm -f main *.o *.so *.dylib *.asm
 
 main.o: main.cpp
 	$(CC) -c ${CXXFLAGS} $< -o $@
