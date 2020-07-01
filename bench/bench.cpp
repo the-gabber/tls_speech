@@ -1,10 +1,11 @@
 #include <benchmark/benchmark.h>
 #include <pthread.h>
 
-extern thread_local unsigned t_tls_value_dso;
-static thread_local unsigned t_tls_value;
+extern thread_local unsigned t_tls_value_dso; //Value from DSO
+static thread_local unsigned t_tls_value; //LE defined in another .o
 thread_local unsigned t_tls_main;
-static unsigned g_data_value;
+
+static unsigned g_data_value; //Reference access to memory
 
 
 //----------------------------------- .data variable
@@ -24,9 +25,7 @@ static void BM_InitialExec(benchmark::State& state)
 {
 	for (auto _: state)
 	{
-		//asm volatile("" : : : "memory");
 		benchmark::DoNotOptimize(t_tls_value_dso++);
-		//asm volatile("" : : : "memory");
 	}
 }
 BENCHMARK(BM_InitialExec);

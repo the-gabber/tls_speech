@@ -8,6 +8,6 @@ DSO_EXT=dylib
 endif
 
 CC= clang++
-CXXFLAGS= -std=c++14 -Os $(STD_LIB) #-g
+CXXFLAGS= -std=c++17 -Os $(STD_LIB) #-g
 LDFLAGS=  $(STD_LIB)
 
